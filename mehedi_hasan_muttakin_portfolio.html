@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehedi Hasan Muttakin | Finance, Automation & Analytics</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Power BI Dashboard Simulations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        darkbg: '#080b11',
+                        darkcard: 'rgba(15, 23, 42, 0.65)',
+                        borderdark: 'rgba(255, 255, 255, 0.08)',
+                        accentcyan: '#06b6d4',
+                        accentblue: '#3b82f6',
+                        accentpurple: '#8b5cf6',
+                        accentemerald: '#10b981'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080b11;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .glass-panel-hover:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 40px -10px rgba(14, 165, 233, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .glow-text-cyan {
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        .glow-text-blue {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Gradient Text */
+        .gradient-text-apple {
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-vibrant {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080b11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+
+        .active-tab {
+            background: rgba(56, 189, 248, 0.15) !important;
+            border-color: #38bdf8 !important;
+            color: #38bdf8 !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500/30 selection:text-cyan-200">
+
+    <!-- Ambient Glowing Orbs background -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-600/15 rounded-full blur-[140px] animate-pulse-slow"></div>
+        <div class="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[160px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-40 left-1/3 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[180px] animate-pulse-slow" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-6 py-4 mt-2">
+            <div class="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-lg group-hover:scale-105 transition-transform">
+                        M
+                    </div>
+                    <span class="font-bold tracking-tight text-lg text-white group-hover:text-cyan-400 transition-colors">
+                        Mehedi Hasan<span class="text-cyan-400">.</span>
+                    </span>
+                </a>
+
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-300">
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                    <a href="#competencies" class="hover:text-white transition-colors">Competencies</a>
+                    <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+                    <a href="#powerbi-hub" class="hover:text-cyan-400 transition-colors flex items-center space-x-1">
+                        <span>Analytics Hub</span>
+                        <span class="px-1.5 py-0.5 text-[10px] bg-cyan-500/20 text-cyan-300 rounded font-mono border border-cyan-500/30">Power BI</span>
+                    </a>
+                    <a href="#education" class="hover:text-white transition-colors">Education</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <!-- Action Button -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="openCvModal()" class="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full border border-white/10 transition-all hover:scale-105 active:scale-95">
+                        <i class="fa-solid fa-file-arrow-down text-cyan-400">View CV</i>
+                    </button>
+                    <a href="#contact" class="inline-flex items-center space-x-2 text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-cyan-500/25 transition-all hover:scale-105 active:scale-95">
+                        <span>Hire Me</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 pt-28">
+
+        <!-- Hero Section -->
+        <section class="min-h-[85vh] flex flex-col justify-center items-center px-6 text-center max-w-6xl mx-auto relative">
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/60 rounded-full px-4 py-1.5 mb-8 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span class="text-xs font-semibold text-slate-300 tracking-wide uppercase font-mono">Revenue Assurance & Financial Automation Expert</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-8 gradient-text-apple">
+                Transforming Financial Operations with <br class="hidden sm:inline">
+                <span class="gradient-text-vibrant">Data & Automation.</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+                Finance & Accounting Professional with 3+ years driving <span class="text-white font-medium">Revenue Assurance</span>, <span class="text-white font-medium">SAGE 300 ERP operations</span>, and process automation using <span class="text-cyan-400 font-medium">VBA Macros, Power Automate</span>, and advanced <span class="text-blue-400 font-medium">Power BI Analytics</span>.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <a href="#powerbi-hub" class="inline-flex items-center space-x-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-full font-semibold shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all hover:-translate-y-0.5">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Explore Power BI Dashboards</span>
+                </a>
+                <a href="#contact" class="inline-flex items-center space-x-3 bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700 px-8 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5">
+                    <i class="fa-regular fa-paper-plane text-cyan-400"></i>
+                    <span>Get In Touch</span>
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
+                <div class="glass-panel p-5 rounded-2xl text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-cyan-400 font-mono tracking-tight mb-1" id="stat1">3+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Years Experience</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-blue-400 font-mono tracking-tight mb-1" id="stat2">1,000+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Bulk Records Automated</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-purple-400 font-mono tracking-tight mb-1">1-Click</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Dynamic Reports</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight mb-1">11-Member</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Team Leadership</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Professional Overview -->
+        <section id="about" class="py-24 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left: Bio & Highlights -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">
+                            <i class="fa-solid fa-user-check"></i>
+                            <span>About Me</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+                            Bridging Corporate Finance with Modern Data Intelligence.
+                        </h2>
+                        <p class="text-slate-300 leading-relaxed text-base sm:text-lg">
+                            Currently pursuing an <span class="text-white font-semibold">MBA in Finance at Bangladesh University of Professionals (BUP)</span>, I combine analytical financial strategy with modern technology to eradicate revenue leakages and automate repetitive workflows.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                            At <span class="text-white font-medium">Carnival Internet (Dotlines Bangladesh Ltd.)</span>, I manage financial operations, General Ledger entries in SAGE 300, bank reconciliations, and regulatory VAT/TDS reporting. My milestone innovations include reducing report generation time from 3 days to a single click using Excel VBA, and deploying automated mail and ticketing pipelines.
+                        </p>
+
+                        <!-- Highlights Pills -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+                            <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-location-dot text-sm"></i>
+                                </div>
+                                <span class="text-xs font-medium text-slate-200">Based in Dhaka, Bangladesh</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-graduation-cap text-sm"></i>
+                                </div>
+                                <span class="text-xs font-medium text-slate-200">MBA in Finance Candidate (BUP)</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-certificate text-sm"></i>
+                                </div>
+                                <span class="text-xs font-medium text-slate-200">Microsoft PL-300 Candidate</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-people-group text-sm"></i>
+                                </div>
+                                <span class="text-xs font-medium text-slate-200">Multi-City Team Lead (11 Staff)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Info Card & Badges -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden border border-slate-700/60">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                            
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-between">
+                                <span>Core Tech Stack</span>
+                                <i class="fa-solid fa-layer-group text-cyan-400 text-sm"></i>
+                            </h3>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                        <span>ERP - SAGE 300 Premium</span>
+                                        <span class="text-cyan-400">Expert</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[95%]"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                        <span>Advanced Excel & VBA Automation</span>
+                                        <span class="text-cyan-400">Expert</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[98%]"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                        <span>Microsoft Power BI & Financial Analytics</span>
+                                        <span class="text-blue-400">Advanced</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-full w-[88%]"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                        <span>Power Automate Workflow Systems</span>
+                                        <span class="text-purple-400">Advanced</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-[90%]"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                        <span>QuickBooks Online & Tax Settings</span>
+                                        <span class="text-emerald-400">Proficient</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full w-[85%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                                <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-1"></i> NBR VAT, VDS & TDS Ready</span>
+                                <span><i class="fa-solid fa-code-branch text-purple-400 mr-1"></i> SLA Compliant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Competencies Matrix Section -->
+        <section id="competencies" class="py-24 px-6 bg-slate-950/50">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">Expertise & Skillsets</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-2">Core Competencies.</h2>
+                    <p class="text-slate-400 mt-4 text-sm sm:text-base">Categorized proficiency across financial operations, data intelligence, and workflow engineering.</p>
+                    
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap justify-center gap-2 mt-8">
+                        <button onclick="filterCompetencies('all', this)" class="comp-btn active-tab px-4 py-2 rounded-full text-xs font-semibold border border-slate-700 text-slate-300 transition-all">All Capabilities</button>
+                        <button onclick="filterCompetencies('finance', this)" class="comp-btn px-4 py-2 rounded-full text-xs font-semibold border border-slate-800 text-slate-400 hover:text-white transition-all">Financial & GL</button>
+                        <button onclick="filterCompetencies('automation', this)" class="comp-btn px-4 py-2 rounded-full text-xs font-semibold border border-slate-800 text-slate-400 hover:text-white transition-all">Automation & ERP</button>
+                        <button onclick="filterCompetencies('compliance', this)" class="comp-btn px-4 py-2 rounded-full text-xs font-semibold border border-slate-800 text-slate-400 hover:text-white transition-all">Compliance & Management</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="competencyGrid">
+
+                    <!-- Card 1 -->
+                    <div class="comp-card glass-panel glass-panel-hover p-8 rounded-3xl" data-category="finance">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Financial Accounting & GL</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Journal entries, sub-ledger (SL) to General Ledger (GL) reconciliations, MRC posting, and month-end closing.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-cyan-300">General Ledger</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-cyan-300">Bank Reconciliation</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="comp-card glass-panel glass-panel-hover p-8 rounded-3xl" data-category="finance">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-[#000] fa-magnifying-glass-dollar"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Revenue Assurance & Leakage</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Comprehensive revenue auditing, leakage detection, unbilled service analysis, and collection accuracy.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-blue-300">Audit Controls</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-blue-300">AR/AP Optimization</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="comp-card glass-panel glass-panel-hover p-8 rounded-3xl" data-category="automation">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">VBA & Power Automate</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Automating high-volume 1,000+ client data entries, macro-driven dashboards, and mail merge invoice pipelines.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-purple-300">Excel VBA</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-purple-300">Power Automate</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="comp-card glass-panel glass-panel-hover p-8 rounded-3xl" data-category="automation">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">ERP & Financial Systems</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Hands-on expertise in SAGE 300 Premium ERP operations, QuickBooks Online, and PortWallet/BoomCast integration.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-emerald-300">SAGE 300</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-emerald-300">QuickBooks</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="comp-card glass-panel glass-panel-hover p-8 rounded-3xl" data-category="compliance">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Tax Compliance (VAT/TDS)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Calculating & verifying applicable VAT, VDS, and TDS in adherence with NBR regulations and documentation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-amber-300">NBR Compliance</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-amber-300">VDS / TDS</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="comp-card glass-panel glass-panel-hover p-8 rounded-3xl" data-category="compliance">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">MIS & Management Reporting</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Daily/Monthly collection analytics, revenue statements, dispute resolution ticketing via OTRS, and SLA tracking.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-pink-300">Executive MIS</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] font-mono text-pink-300">SLA Dispute Mgmt</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Timeline Section -->
+        <section id="experience" class="py-24 px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">Career Track</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-2">Work Experience.</h2>
+                    <p class="text-slate-400 mt-4 text-sm sm:text-base">Demonstrated progression across corporate financial management and banking operations.</p>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="relative border-l-2 border-slate-800 ml-4 md:ml-32 space-y-12">
+
+                    <!-- Timeline Item 1 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <!-- Dot Icon -->
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-slate-900 border-2 border-cyan-400 flex items-center justify-center text-cyan-400 text-xs shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <!-- Date Badge (Desktop Left) -->
+                        <div class="hidden md:block absolute -left-36 top-2 text-right w-28">
+                            <span class="text-xs font-mono font-semibold text-cyan-400 block">July 2023 — Present</span>
+                            <span class="text-[11px] text-slate-500">Carnival Internet</span>
+                        </div>
+
+                        <!-- Content Card -->
+                        <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
+                            <div class="md:hidden mb-3">
+                                <span class="text-xs font-mono text-cyan-400 font-semibold">July 2023 — Present</span>
+                            </div>
+                            <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Carnival Internet (Dotlines Bangladesh Ltd.)</h3>
+                                    <p class="text-slate-400 text-sm font-medium">Senior Executive, Accounts & Finance <span class="text-slate-500 text-xs">(July 2026 – Present)</span></p>
+                                    <p class="text-slate-500 text-xs mt-0.5">Previously: Executive (July 2023 – June 2026) | Intern (Jan 2023 – June 2023)</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">Full-Time</span>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                Lead revenue assurance, journal postings for MRCs in SAGE 300, daily bank reconciliations, Sub-Ledger to General Ledger matching, and multi-city team management across Dhaka, Chattogram, and Comilla.
+                            </p>
+
+                            <!-- Key Achievements Pill Box -->
+                            <div class="space-y-3 bg-slate-900/60 p-5 rounded-2xl border border-slate-800/80 mb-6">
+                                <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold">Mentionable Achievements</h4>
+                                <ul class="space-y-2 text-xs text-slate-300">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-2 text-[10px]"></i>
+                                        <span><strong>Process Automation:</strong> Developed VBA & CRM tools to detect revenue leakage and automate reconciliation.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-2 text-[10px]"></i>
+                                        <span><strong>Bulk Data Processing:</strong> Automated entry for 500–1,000+ corporate clients via Power Automate & VBA.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-2 text-[10px]"></i>
+                                        <span><strong>1-Click Reporting:</strong> Built dynamic Excel VBA dashboards reducing reporting prep time from 3 days to seconds.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-2 text-[10px]"></i>
+                                        <span><strong>Team Leadership:</strong> Managed an 11-member distributed team across 3 major cities for accounts operations.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">SAGE 300</span>
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">Excel VBA</span>
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">Power Automate</span>
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">OTRS Ticketing</span>
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">PortWallet</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <!-- Dot Icon -->
+                        <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-600 flex items-center justify-center text-slate-400 text-xs shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+
+                        <!-- Date Badge (Desktop Left) -->
+                        <div class="hidden md:block absolute -left-36 top-2 text-right w-28">
+                            <span class="text-xs font-mono font-semibold text-slate-400 block">Jul 2019 — Sep 2019</span>
+                            <span class="text-[11px] text-slate-500">Sonali Bank PLC</span>
+                        </div>
+
+                        <!-- Content Card -->
+                        <div class="glass-panel p-8 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
+                            <div class="md:hidden mb-3">
+                                <span class="text-xs font-mono text-slate-400 font-semibold">Jul 2019 — Sep 2019</span>
+                            </div>
+                            <div class="flex flex-wrap justify-between items-start gap-4 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Sonali Bank PLC</h3>
+                                    <p class="text-slate-400 text-sm font-medium">Intern | Banking Operations</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-xs font-medium">Internship</span>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                                Supported general banking operations including customer account opening/closing, cheque clearing verification, spreadsheet maintenance, and routine report generation.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">Banking Operations</span>
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">Cheque Processing</span>
+                                <span class="px-3 py-1 bg-slate-800/80 rounded-lg text-slate-300">Customer Support</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Power BI Projects Hub (Future-Ready Showcase) -->
+        <section id="powerbi-hub" class="py-24 px-6 bg-slate-950/80 relative overflow-hidden border-y border-slate-800">
+            <!-- Glow Effects -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Future-Ready Data Analytics Showcase</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Interactive Power BI & Analytics Hub.</h2>
+                    <p class="text-slate-400 mt-4 text-sm sm:text-base">
+                        Preparing for the <span class="text-cyan-400 font-semibold">Microsoft PL-300 Certification</span>. Explore live interactive dashboard mockups simulating real-world revenue assurance & financial reporting metrics.
+                    </p>
+                </div>
+
+                <!-- Dashboard Tab Switcher -->
+                <div class="flex flex-wrap justify-center gap-3 mb-10">
+                    <button onclick="switchDashboard('revenue', this)" class="dash-tab active-tab px-5 py-3 rounded-2xl text-xs font-semibold border border-slate-700 bg-slate-900 text-white flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-shield-virus text-cyan-400"></i>
+                        <span>Revenue Leakage Dashboard</span>
+                    </button>
+                    <button onclick="switchDashboard('aging', this)" class="dash-tab px-5 py-3 rounded-2xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-clock-rotate-left text-blue-400"></i>
+                        <span>AR/AP Aging Tracker</span>
+                    </button>
+                    <button onclick="switchDashboard('sage', this)" class="dash-tab px-5 py-3 rounded-2xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-database text-purple-400"></i>
+                        <span>SAGE 300 SL-to-GL Recon</span>
+                    </button>
+                    <button onclick="switchDashboard('mis', this)" class="dash-tab px-5 py-3 rounded-2xl text-xs font-semibold border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-wallet text-emerald-400"></i>
+                        <span>Executive Cash Analytics</span>
+                    </button>
+                </div>
+
+                <!-- Dashboard Canvas & KPI Display Panel -->
+                <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-slate-700/80 shadow-2xl relative">
+                    
+                    <!-- Header Bar inside Dashboard -->
+                    <div class="flex flex-wrap justify-between items-center gap-4 pb-6 mb-8 border-b border-slate-800">
+                        <div>
+                            <h3 id="dashTitle" class="text-xl sm:text-2xl font-bold text-white flex items-center space-x-3">
+                                <span>Revenue Assurance & Leakage Analytics</span>
+                                <span class="text-xs font-mono font-normal px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Live Simulation</span>
+                            </h3>
+                            <p id="dashDesc" class="text-xs text-slate-400 mt-1">Real-time audit monitoring, unbilled service detection, and recurring revenue matching.</p>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs text-slate-400 font-mono hidden sm:inline"><i class="fa-solid fa-arrows-rotate text-cyan-400 animate-spin mr-1"></i> Data Sync: 100%</span>
+                            <button onclick="triggerExportModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded-xl border border-slate-700 font-medium transition-colors">
+                                <i class="fa-solid fa-download mr-1 text-cyan-400"></i> Embed Status
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic KPI Metric Cards Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="kpiContainer">
+                        <!-- Loaded dynamically via JS -->
+                    </div>
+
+                    <!-- Charts Area Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Chart 1 (Main) -->
+                        <div class="lg:col-span-8 bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 id="chart1Title" class="text-xs font-mono uppercase font-semibold text-slate-300">Revenue Trend vs Leakage Rate</h4>
+                                <span class="text-[11px] text-slate-500">Monthly Comparison</span>
+                            </div>
+                            <div class="h-64 sm:h-72 w-full">
+                                <canvas id="mainDashboardChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Chart 2 (Secondary Breakdown) -->
+                        <div class="lg:col-span-4 bg-slate-900/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 id="chart2Title" class="text-xs font-mono uppercase font-semibold text-slate-300">Leakage Sources Breakdown</h4>
+                                <span class="text-[11px] text-slate-500">Categorical</span>
+                            </div>
+                            <div class="h-56 sm:h-64 w-full flex items-center justify-center">
+                                <canvas id="subDashboardChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Info Banner -->
+                    <div class="mt-8 pt-6 border-t border-slate-800/80 flex flex-wrap justify-between items-center text-xs text-slate-400 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-lightbulb text-amber-400"></i>
+                            <span>Power BI report integration ready for live DirectQuery & REST API embeds upon course completion.</span>
+                        </div>
+                        <div class="font-mono text-cyan-400">
+                            PL-300 Standard Data Schema
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications Timeline -->
+        <section id="education" class="py-24 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left: Academic Qualifications -->
+                    <div class="lg:col-span-6 space-y-8">
+                        <div>
+                            <span class="text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">Academic Foundation</span>
+                            <h2 class="text-3xl font-bold tracking-tight text-white mt-2">Education.</h2>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Degree 1 -->
+                            <div class="glass-panel p-6 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-lg font-bold text-white">Master of Business Administration (MBA)</h3>
+                                    <span class="px-2.5 py-1 bg-cyan-500/10 text-cyan-300 text-xs rounded-full font-mono font-semibold border border-cyan-500/20">Ongoing</span>
+                                </div>
+                                <p class="text-cyan-400 text-sm font-medium">Major in Finance</p>
+                                <p class="text-slate-400 text-xs mt-1">Bangladesh University of Professionals (BUP)</p>
+                            </div>
+
+                            <!-- Degree 2 -->
+                            <div class="glass-panel p-6 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-lg font-bold text-white">Bachelor of Business Administration (BBA)</h3>
+                                    <span class="px-2.5 py-1 bg-slate-800 text-slate-300 text-xs rounded-full font-mono">CGPA 3.14</span>
+                                </div>
+                                <p class="text-blue-400 text-sm font-medium">Major in Finance</p>
+                                <p class="text-slate-400 text-xs mt-1">Barisal Information Technology College (Graduated 2018)</p>
+                            </div>
+
+                            <!-- HSC & SSC -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+                                    <h4 class="text-xs font-bold text-white">HSC (Business Studies)</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Kalkini Syed Abul Hossain College</p>
+                                    <span class="text-xs font-mono text-cyan-400 font-semibold block mt-2">GPA: 4.50 (2014)</span>
+                                </div>
+                                <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+                                    <h4 class="text-xs font-bold text-white">SSC (Business Studies)</h4>
+                                    <p class="text-xs text-slate-400 mt-1">Gopalpur High School</p>
+                                    <span class="text-xs font-mono text-cyan-400 font-semibold block mt-2">GPA: 4.25 (2012)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Training & Professional Certifications -->
+                    <div class="lg:col-span-6 space-y-8">
+                        <div>
+                            <span class="text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">Professional Growth</span>
+                            <h2 class="text-3xl font-bold tracking-tight text-white mt-2">Certifications & Training.</h2>
+                        </div>
+
+                        <div class="space-y-4">
+                            
+                            <!-- Cert 1 -->
+                            <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-chart-pie"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Microsoft Power BI Data Analyst (PL-300)</h4>
+                                        <p class="text-xs text-slate-400">Coursera / Microsoft Learning (Ongoing)</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-cyan-500/20 text-cyan-300 text-[11px] rounded font-mono">In Progress</span>
+                            </div>
+
+                            <!-- Cert 2 -->
+                            <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-calculator"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Financial Modeling & Analysis</h4>
+                                        <p class="text-xs text-slate-400">Corporate Finance Institute (CFI) via Coursera</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-purple-500/20 text-purple-300 text-[11px] rounded font-mono">In Progress</span>
+                            </div>
+
+                            <!-- Cert 3 -->
+                            <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-book-bookmark"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Digital Accounting with QuickBooks Online</h4>
+                                        <p class="text-xs text-slate-400">Grameenphone Academy & CodersTrust</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 text-[11px] rounded font-mono">Completed</span>
+                            </div>
+
+                            <!-- Cert 4 -->
+                            <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-laptop-code"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Google IT Support Professional Certificate</h4>
+                                        <p class="text-xs text-slate-400">Coursera Professional Credential</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-blue-500/20 text-blue-300 text-[11px] rounded font-mono">Completed</span>
+                            </div>
+
+                            <!-- Cert 5 -->
+                            <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-file-excel"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Advanced Office Applications (Excel, Access, VBA)</h4>
+                                        <p class="text-xs text-slate-400">BCC / BKIICT (5-Month Intensive Course)</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-[11px] rounded font-mono">Completed</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Extracurricular Section -->
+        <section class="py-16 px-6 bg-slate-950/40">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">Community & Soft Skills</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-white mt-1">Extracurricular Leadership.</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-cyan-500/10 text-cyan-400 flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-white">BUP Islamic Society</h3>
+                        <p class="text-xs text-slate-400 mt-1">Proactive Member (2025–Present)</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-white">BUP Career Club</h3>
+                        <p class="text-xs text-slate-400 mt-1">Active Member (2025–Present)</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-white">BITC Sports Club</h3>
+                        <p class="text-xs text-slate-400 mt-1">Secretarial Member (2015–2018)</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-white">BITC Debating Club</h3>
+                        <p class="text-xs text-slate-400 mt-1">Public Speaking & Debate Member</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section & Form -->
+        <section id="contact" class="py-24 px-6 relative">
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-panel rounded-3xl p-8 sm:p-14 border border-slate-700/80 shadow-2xl relative overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        
+                        <!-- Left Contact Info -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <span class="text-cyan-400 text-xs font-mono font-semibold tracking-widest uppercase">Get In Touch</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Let's discuss financial innovation.</h2>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Available for Senior Finance, Revenue Assurance, or Financial Systems & Automation roles. Drop a message or reach out directly.
+                            </p>
+
+                            <div class="space-y-4 pt-4">
+                                <a href="mailto:muttakin7014@gmail.com" class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-colors group">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-slate-500 font-mono block">Direct Email</span>
+                                        <span class="text-sm font-semibold text-white group-hover:text-cyan-300">muttakin7014@gmail.com</span>
+                                    </div>
+                                </a>
+
+                                <a href="tel:+8801787083272" class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/40 transition-colors group">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-slate-500 font-mono block">Phone & WhatsApp</span>
+                                        <span class="text-sm font-semibold text-white group-hover:text-blue-300">+88-01787-083272</span>
+                                    </div>
+                                </a>
+
+                                <a href="https://linkedin.com/in/mehedi-hasan-muttakin" target="_blank" class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/40 transition-colors group">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-slate-500 font-mono block">LinkedIn Profile</span>
+                                        <span class="text-sm font-semibold text-white group-hover:text-purple-300">linkedin.com/in/mehedi-hasan-muttakin</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Contact Form -->
+                        <div class="lg:col-span-7 bg-slate-900/90 p-8 rounded-3xl border border-slate-800">
+                            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-xs font-medium text-slate-400 mb-1.5">Your Name</label>
+                                        <input type="text" required placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-slate-400 mb-1.5">Email Address</label>
+                                        <input type="email" required placeholder="john@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-400 mb-1.5">Subject / Inquiry Type</label>
+                                    <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors">
+                                        <option>Job Opportunity / Career Role</option>
+                                        <option>Power BI & Automation Project</option>
+                                        <option>Financial Consulting Inquiry</option>
+                                        <option>General Networking</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-400 mb-1.5">Message</label>
+                                    <textarea rows="4" required placeholder="Write your message here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition-colors"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold py-3.5 rounded-xl text-sm shadow-lg shadow-cyan-500/25 transition-all">
+                                    <i class="fa-regular fa-paper-plane mr-2"></i> Send Message
+                                </button>
+                            </form>
+
+                            <!-- Success Banner (Hidden by default) -->
+                            <div id="formSuccessMessage" class="hidden text-center py-10 space-y-3">
+                                <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-xl">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-white">Message Sent Successfully!</h3>
+                                <p class="text-xs text-slate-400">Thank you for reaching out. Mehedi will get back to you shortly.</p>
+                                <button onclick="resetContactForm()" class="px-4 py-2 bg-slate-800 text-xs text-slate-300 rounded-lg">Send Another Message</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-slate-900 bg-slate-950 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-slate-400 font-medium">&copy; 2026 Mehedi Hasan Muttakin. All rights reserved.</p>
+                <p class="text-[11px] text-slate-600 mt-0.5">Designed with Apple-grade minimalism and Power BI analytics integration.</p>
+            </div>
+            <div class="flex items-center space-x-6 text-slate-400">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#powerbi-hub" class="hover:text-cyan-400 transition-colors">Power BI Hub</a>
+                <a href="mailto:muttakin7014@gmail.com" class="hover:text-cyan-400 transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CV Modal -->
+    <div id="cvModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-panel bg-slate-900 max-w-2xl w-full rounded-3xl p-8 border border-slate-700 relative shadow-2xl space-y-6">
+            <button onclick="closeCvModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Curriculum Vitae</h3>
+                    <p class="text-xs text-slate-400">Mehedi Hasan Muttakin - Finance & Revenue Assurance Professional</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 text-xs text-slate-300 space-y-3 font-mono">
+                <div class="flex justify-between border-b border-slate-900 pb-2">
+                    <span class="text-slate-500">Degree:</span>
+                    <span class="text-white">MBA (BUP) | BBA (BITC)</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-900 pb-2">
+                    <span class="text-slate-500">Key Expertise:</span>
+                    <span class="text-white">Revenue Assurance, SAGE 300, Power BI, VBA</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-900 pb-2">
+                    <span class="text-slate-500">Current Role:</span>
+                    <span class="text-cyan-400">Senior Executive @ Carnival Internet</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Contact:</span>
+                    <span class="text-white">+88-01787-083272 | Dhaka</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 justify-end pt-2">
+                <button onclick="closeCvModal()" class="px-5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">Close</button>
+                <button onclick="copyCvInfo()" class="px-5 py-2.5 rounded-xl text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/30">
+                    <i class="fa-solid fa-copy mr-1"></i> Copy Contact & Summary
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic & Chart.js Simulations -->
+    <script>
+        // Chart.js Instances
+        let mainChart = null;
+        let subChart = null;
+
+        // Power BI Datasets for switching
+        const dashboardDatasets = {
+            revenue: {
+                title: "Revenue Assurance & Leakage Analytics",
+                desc: "Real-time audit monitoring, unbilled service detection, and recurring revenue matching.",
+                kpis: [
+                    { title: "Billed Monthly Revenue", value: "BDT 42.5M", change: "+4.2%", icon: "fa-money-bill-wave", color: "text-cyan-400" },
+                    { title: "Detected Leakage Rate", value: "0.14%", change: "-0.8% (Improved)", icon: "fa-shield-virus", color: "text-emerald-400" },
+                    { title: "Automated Audit Coverage", value: "99.4%", change: "Single-Click VBA", icon: "fa-robot", color: "text-purple-400" },
+                    { title: "Unbilled MRC Flagged", value: "14 Clients", change: "Actioned", icon: "fa-triangle-exclamation", color: "text-amber-400" }
+                ],
+                chart1: {
+                    title: "Revenue Trend vs Leakage Rate",
+                    type: "line",
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+                    datasets: [
+                        { label: "Billed Revenue (M)", data: [38, 39.5, 40, 41, 40.8, 41.5, 42, 42.2, 42.5, 43], borderColor: "#06b6d4", backgroundColor: "rgba(6, 182, 212, 0.1)", fill: true, tension: 0.4 },
+                        { label: "Leakage %", data: [1.2, 0.9, 0.8, 0.5, 0.4, 0.3, 0.2, 0.18, 0.15, 0.14], borderColor: "#ef4444", borderDash: [5, 5], tension: 0.4 }
+                    ]
+                },
+                chart2: {
+                    title: "Leakage Sources Breakdown",
+                    type: "doughnut",
+                    labels: ["Discontinuations", "Unapplied Discounts", "SL-GL Timing", "Billing Adjustments"],
+                    datasets: [{
+                        data: [45, 25, 20, 10],
+                        backgroundColor: ["#06b6d4", "#3b82f6", "#8b5cf6", "#f59e0b"]
+                    }]
+                }
+            },
+            aging: {
+                title: "Automated AR/AP Aging Tracker",
+                desc: "Sub-ledger collection tracking, outstanding customer balances, and collection velocity.",
+                kpis: [
+                    { title: "Total AR Outstanding", value: "BDT 8.2M", change: "-5.1%", icon: "fa-wallet", color: "text-blue-400" },
+                    { title: "0 - 30 Days Current", value: "78%", change: "On Target", icon: "fa-clock", color: "text-emerald-400" },
+                    { title: "90+ Days Overdue", value: "BDT 420K", change: "DSO: 28 Days", icon: "fa-circle-exclamation", color: "text-rose-400" },
+                    { title: "Collection Rate", value: "96.2%", change: "+2.4%", icon: "fa-chart-line", color: "text-cyan-400" }
+                ],
+                chart1: {
+                    title: "Aging Bucket Distribution (BDT Millions)",
+                    type: "bar",
+                    labels: ["0-30 Days", "31-60 Days", "61-90 Days", "90+ Days"],
+                    datasets: [{ label: "Outstanding AR", data: [6.4, 1.1, 0.3, 0.42], backgroundColor: ["#10b981", "#3b82f6", "#f59e0b", "#ef4444"], borderRadius: 8 }]
+                },
+                chart2: {
+                    title: "Collection Channel Ratio",
+                    type: "pie",
+                    labels: ["Bank / Cheque", "PortWallet", "Direct Deposit", "Cash"],
+                    datasets: [{
+                        data: [55, 30, 10, 5],
+                        backgroundColor: ["#3b82f6", "#06b6d4", "#8b5cf6", "#10b981"]
+                    }]
+                }
+            },
+            sage: {
+                title: "SAGE 300 SL-to-GL Reconciliation Insights",
+                desc: "Sub-ledger to General Ledger matching, bank reconciliation status, and journal validation.",
+                kpis: [
+                    { title: "Bank Recon Match", value: "99.8%", change: "Zero Variance", icon: "fa-building-columns", color: "text-emerald-400" },
+                    { title: "Unreconciled Items", value: "3 Entries", change: "Under Review", icon: "fa-list-check", color: "text-amber-400" },
+                    { title: "MRC Posted (SAGE 300)", value: "100%", change: "Month-End Done", icon: "fa-file-invoice-dollar", color: "text-purple-400" },
+                    { title: "Sub-Ledger Variance", value: "BDT 0.00", change: "Balanced", icon: "fa-scale-balanced", color: "text-cyan-400" }
+                ],
+                chart1: {
+                    title: "SL vs GL Variance Analysis",
+                    type: "bar",
+                    labels: ["Corporate", "CFB Clients", "Retail", "Channel Partners"],
+                    datasets: [
+                        { label: "Sub-Ledger Total", data: [18.5, 12.2, 8.4, 3.4], backgroundColor: "#3b82f6", borderRadius: 6 },
+                        { label: "General Ledger Total", data: [18.5, 12.2, 8.4, 3.4], backgroundColor: "#06b6d4", borderRadius: 6 }
+                    ]
+                },
+                chart2: {
+                    title: "Reconciliation Status",
+                    type: "doughnut",
+                    labels: ["Matched", "Pending Clearing", "Manual Adjustment"],
+                    datasets: [{
+                        data: [94, 5, 1],
+                        backgroundColor: ["#10b981", "#f59e0b", "#ef4444"]
+                    }]
+                }
+            },
+            mis: {
+                title: "Executive MIS & Cash Collection Analytics",
+                desc: "Regional revenue contributions, ticketing SLA velocity via OTRS, and multi-city team oversight.",
+                kpis: [
+                    { title: "Total Monthly Collection", value: "BDT 41.8M", change: "Dhaka + Ctg + Comilla", icon: "fa-sack-dollar", color: "text-emerald-400" },
+                    { title: "SLA Resolution Rate", value: "98.5%", change: "OTRS Ticketing", icon: "fa-headset", color: "text-cyan-400" },
+                    { title: "Bulk Records Processed", value: "1,000+", change: "Power Automate", icon: "fa-bolt", color: "text-purple-400" },
+                    { title: "Team Units Led", value: "11 Staff", change: "3 Regional Hubs", icon: "fa-users-gear", color: "text-blue-400" }
+                ],
+                chart1: {
+                    title: "Regional Collection Breakdown (Dhaka, Chattogram, Comilla)",
+                    type: "line",
+                    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+                    datasets: [
+                        { label: "Dhaka Region", data: [8.5, 9.2, 9.8, 10.5], borderColor: "#06b6d4", tension: 0.3 },
+                        { label: "Chattogram Region", data: [2.1, 2.4, 2.3, 2.6], borderColor: "#3b82f6", tension: 0.3 },
+                        { label: "Comilla Region", data: [1.0, 1.2, 1.1, 1.3], borderColor: "#8b5cf6", tension: 0.3 }
+                    ]
+                },
+                chart2: {
+                    title: "OTRS Ticket Resolution SLA",
+                    type: "doughnut",
+                    labels: ["Within SLA (<2 hrs)", "Same Day", "Escalated"],
+                    datasets: [{
+                        data: [88, 10, 2],
+                        backgroundColor: ["#10b981", "#3b82f6", "#ef4444"]
+                    }]
+                }
+            }
+        };
+
+        // Initialize Dashboard Charts
+        function initDashboardCharts(dataKey) {
+            const data = dashboardDatasets[dataKey];
+            
+            // Update Title & Desc
+            document.getElementById('dashTitle').children[0].innerText = data.title;
+            document.getElementById('dashDesc').innerText = data.desc;
+            document.getElementById('chart1Title').innerText = data.chart1.title;
+            document.getElementById('chart2Title').innerText = data.chart2.title;
+
+            // Render KPIs
+            const kpiContainer = document.getElementById('kpiContainer');
+            kpiContainer.innerHTML = '';
+            data.kpis.forEach(kpi => {
+                kpiContainer.innerHTML += `
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] text-slate-400 font-medium">${kpi.title}</span>
+                            <i class="fa-solid ${kpi.icon} ${kpi.color} text-sm"></i>
+                        </div>
+                        <div class="text-lg sm:text-xl font-bold font-mono text-white">${kpi.value}</div>
+                        <div class="text-[10px] text-slate-500 mt-1">${kpi.change}</div>
+                    </div>
+                `;
+            });
+
+            // Destroy existing charts if present
+            if (mainChart) mainChart.destroy();
+            if (subChart) subChart.destroy();
+
+            // Chart Colors Theme for Dark Mode
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.05)';
+
+            // Render Main Chart
+            const ctx1 = document.getElementById('mainDashboardChart').getContext('2d');
+            mainChart = new Chart(ctx1, {
+                type: data.chart1.type,
+                data: {
+                    labels: data.chart1.labels,
+                    datasets: data.chart1.datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } } }
+                }
+            });
+
+            // Render Sub Chart
+            const ctx2 = document.getElementById('subDashboardChart').getContext('2d');
+            subChart = new Chart(ctx2, {
+                type: data.chart2.type,
+                data: {
+                    labels: data.chart2.labels,
+                    datasets: data.chart2.datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
+                }
+            });
+        }
+
+        // Switch Dashboard Tab
+        function switchDashboard(key, btn) {
+            document.querySelectorAll('.dash-tab').forEach(b => b.classList.remove('active-tab'));
+            btn.classList.add('active-tab');
+            initDashboardCharts(key);
+        }
+
+        // Competency Category Filter
+        function filterCompetencies(category, btn) {
+            document.querySelectorAll('.comp-btn').forEach(b => b.classList.remove('active-tab'));
+            btn.classList.add('active-tab');
+
+            const cards = document.querySelectorAll('.comp-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Contact Form Handling (No alert box)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccessMessage').classList.remove('hidden');
+        }
+
+        function resetContactForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('formSuccessMessage').classList.add('hidden');
+        }
+
+        // CV Modal Controls
+        function openCvModal() {
+            document.getElementById('cvModal').classList.remove('hidden');
+            document.getElementById('cvModal').classList.add('flex');
+        }
+
+        function closeCvModal() {
+            document.getElementById('cvModal').classList.add('hidden');
+            document.getElementById('cvModal').classList.remove('flex');
+        }
+
+        function copyCvInfo() {
+            const summaryText = "MEHEDI HASAN MUTTAKIN\nFinance & Accounting Professional | Revenue Assurance & ERP Operations\nEmail: muttakin7014@gmail.com | Phone: +88-01787-083272\nLinkedIn: linkedin.com/in/mehedi-hasan-muttakin\nEducation: MBA in Finance (BUP) | BBA in Finance (BITC)";
+            navigator.clipboard.writeText(summaryText);
+            
+            // Temporary message inside button
+            const btn = event.currentTarget;
+            btn.innerHTML = `<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied to Clipboard!`;
+            setTimeout(() => {
+                btn.innerHTML = `<i class="fa-solid fa-copy mr-1"></i> Copy Contact & Summary`;
+            }, 2500);
+        }
+
+        function triggerExportModal() {
+            openCvModal();
+        }
+
+        // On Load Init
+        window.onload = function() {
+            initDashboardCharts('revenue');
+        };
+    </script>
+</body>
+</html>
